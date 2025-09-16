@@ -12,13 +12,18 @@ This is a minimal CPU-friendly demo of a semiblind unmixing pipeline combining:
    source venv/bin/activate
    pip install -r requirements.txt
 
-## Run everything (will run on CPU)
-python run_all.py
+## Run everything (example, CPU)
+python run_all.py --input data/synthetic --device cpu
 
-This will:
-- generate a small synthetic dataset (data/synthetic)
+Note: this repository no longer auto-generates synthetic data. Provide a prepared dataset at
+`data/synthetic` (or pass `--input <path>`). The dataset should be either:
+- a directory containing `hsis.npy`, `abundances.npy`, and `endmembers.npy` (shapes: `(N,H,W,B)`, `(N,H,W,R)`, `(R,B)`),
+or
+- a single `.mat` file containing variables `hsis`, `abundances`, `endmembers` (or a pack with a 3D HSI and no abds/E where endmembers will be estimated).
+
+Running `run_all.py` will:
 - train the tiny STU, SpecDM, AbundDM (few epochs for CPU)
-- run the semiblind sampler on one sample and print reconstruction MSE
+- run the semiblind sampler on the first sample and print reconstruction MSE
 
 ## Notes
 - Models and training are intentionally tiny so they are runnable on CPU.
