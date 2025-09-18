@@ -1,0 +1,34 @@
+{
+  "sampler": {
+    "recon_mse": 0.006083671469241381,
+    "recon_rmse": 0.07799789400516774,
+    "abundance_rmse_per_endmember": [
+      0.07498744115336134,
+      0.07385652238024447,
+      0.0557817992220998
+    ],
+    "abundance_rmse_global": 0.06877381127843898,
+    "spectral_angle_deg_per_endmember": [
+      4.921353816986084,
+      4.427884101867676,
+      11.861159324645996
+    ],
+    "spectral_angle_deg_mean": 7.070131778717041
+  },
+  "ls": {
+    "recon_mse": 0.02359512820839882,
+    "recon_rmse": 0.15360705780789768,
+    "abundance_rmse_per_endmember": [
+      0.018039913679181504,
+      0.020060088004827968,
+      0.008934894275225104
+    ],
+    "abundance_rmse_global": 0.01640810726463417,
+    "spectral_angle_deg_per_endmember": [
+      0.0,
+      0.0,
+      0.02797645330429077
+    ],
+    "spectral_angle_deg_mean": 0.009325484745204449
+  }
+}
