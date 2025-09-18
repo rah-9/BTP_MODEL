@@ -8,7 +8,7 @@ BTP_MODEL (B.Tech Project Model) is a comprehensive implementation of hyperspect
 
 This repository implements UniMix-Diff, a semiblind unmixing pipeline that integrates:
 
-- **Tiny STU (Spectral-Temporal Unmixing)**: An MLP-based unmixing network
+- **SAMU-Net (Spectral–Abundance Mixing Unmixing Network)**: An MLP-based unmixing network
 - **Spectral DDPM**: 1D diffusion model for spectral signatures
 - **Abundance DDPM**: 2D diffusion model for spatial abundance maps
 - **Semiblind Posterior Sampler**: Alternating reverse sampling with likelihood gradients
@@ -66,13 +66,11 @@ pip install -r requirements.txt
 ### Quick Start
 
 Run the complete pipeline with CPU:
-
 ```bash
 python run_all.py --input data/synthetic --device cpu
 ```
 
 For GPU acceleration (if available):
-
 ```bash
 python run_all.py --input data/synthetic --device cuda
 ```
@@ -80,7 +78,6 @@ python run_all.py --input data/synthetic --device cuda
 ### Custom Dataset
 
 To use your own dataset:
-
 ```bash
 python run_all.py --input /path/to/your/data --device cpu
 ```
@@ -135,28 +132,34 @@ BTP_MODEL/
 The system supports two data formats:
 
 ### NumPy Format (Recommended)
+
 A directory containing three files:
-- `hsis.npy`: Hyperspectral images with shape `(N, H, W, B)`
+
+- **hsis.npy**: Hyperspectral images with shape (N, H, W, B)
   - N: Number of samples
   - H, W: Spatial dimensions
   - B: Number of spectral bands
-- `abundances.npy`: Ground truth abundances with shape `(N, H, W, R)`
+  
+- **abundances.npy**: Ground truth abundances with shape (N, H, W, R)
   - R: Number of endmembers
-- `endmembers.npy`: Endmember spectra with shape `(R, B)`
+  
+- **endmembers.npy**: Endmember spectra with shape (R, B)
 
 ### MATLAB Format
-A single `.mat` file containing variables:
-- `hsis`: Hyperspectral images
-- `abundances`: Ground truth abundances (optional)
-- `endmembers`: Endmember spectra (optional, will be estimated if not provided)
+
+A single .mat file containing variables:
+
+- **hsis**: Hyperspectral images
+- **abundances**: Ground truth abundances (optional)
+- **endmembers**: Endmember spectra (optional, will be estimated if not provided)
 
 ## Training
 
 The training process consists of three main stages:
 
-1. **STU Training**: Trains the spectral-temporal unmixing network
-2. **Spectral Diffusion Training**: Trains the 1D spectral diffusion model
-3. **Abundance Diffusion Training**: Trains the 2D spatial abundance diffusion model
+1. STU Training: Trains the spectral-temporal unmixing network
+2. Spectral Diffusion Training: Trains the 1D spectral diffusion model
+3. Abundance Diffusion Training: Trains the 2D spatial abundance diffusion model
 
 ### Training Parameters
 
@@ -186,6 +189,7 @@ The semiblind posterior sampler performs inference by:
 ### Inference Results
 
 The system outputs:
+
 - Reconstructed hyperspectral images
 - Estimated abundance maps
 - Estimated endmember spectra
@@ -201,6 +205,7 @@ The model performance is evaluated using:
 - **Root Mean Square Error (RMSE)**: Overall reconstruction quality
 
 Typical results on synthetic data:
+
 - Reconstruction MSE: < 0.01
 - Abundance RMSE: < 0.05
 - Average SAM: < 5 degrees
@@ -208,21 +213,25 @@ Typical results on synthetic data:
 ## Key Features
 
 ### 1. Modular Design
+
 - Separate components for different model types
 - Easy to extend and modify individual components
 - Clean separation between training and inference
 
 ### 2. CPU-Friendly Implementation
+
 - Optimized for CPU execution
 - Minimal memory requirements
 - Suitable for educational and demonstration purposes
 
 ### 3. Scalable Architecture
+
 - Easy migration from CPU to GPU
 - Configurable model sizes
 - Adjustable diffusion steps for quality vs speed trade-offs
 
 ### 4. Comprehensive Evaluation
+
 - Multiple evaluation metrics
 - Visualization tools
 - Performance monitoring utilities
@@ -314,7 +323,5 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## Contact
 
 For questions or issues, please open an issue on GitHub or contact the repository maintainer.
-
----
 
 **Note**: This is a CPU-optimized demo version. For production use with large datasets, consider GPU acceleration and parameter tuning based on your specific requirements.
