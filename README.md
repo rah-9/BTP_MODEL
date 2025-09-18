@@ -17,6 +17,7 @@ The implementation is designed to be CPU-friendly for demonstration and testing 
 
 ## Table of Contents
 
+
 - [Installation](#installation)
 - [Usage](#usage)
 - [Project Structure](#project-structure)
